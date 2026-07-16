@@ -86,10 +86,12 @@ main{padding:8px 0 70px}
 .ex{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);margin-bottom:14px;box-shadow:var(--sh-sm);transition:box-shadow .18s,transform .18s;overflow:hidden}
 .ex:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}
 .exhead{display:flex;align-items:flex-start;gap:16px;padding:18px 20px 0}
+.exhead>div{min-width:0;flex:1}
 .exnum{font-family:var(--display);font-size:22px;line-height:1;margin-top:2px;min-width:38px}
 .exhead h3{font-size:17.5px;font-weight:800;letter-spacing:-.01em}
 .meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
-.chip{font-family:var(--mono);font-size:12px;background:#F6F7F8;border:1px solid var(--line);padding:4px 10px;border-radius:var(--r-sm);color:var(--ink-2);white-space:nowrap}
+.chip{font-family:var(--mono);font-size:12px;background:#F6F7F8;border:1px solid var(--line);padding:4px 10px;border-radius:var(--r-sm);color:var(--ink-2);white-space:nowrap;max-width:100%}
+.chip.long{white-space:normal;overflow-wrap:anywhere}
 .chip b{font-weight:800;color:var(--ink)}
 .exbody{display:grid;grid-template-columns:1fr 270px;gap:20px;padding:14px 20px 18px 74px}
 .cues{font-size:14px;color:var(--soft)}
@@ -148,6 +150,9 @@ footer{background:#0E1116;color:#727D8A;padding:26px 0;font-size:12.5px;text-ali
 footer b{color:#B9C2CC;font-weight:600}
 
 @media(max-width:760px){
+  html,body{overflow-x:hidden;max-width:100%}
+  .chip{white-space:normal;overflow-wrap:anywhere}
+  .vidzone input{min-width:0;width:100%;flex:1 1 100%}
   .controls .wrap{gap:10px;padding-top:9px;padding-bottom:9px}
   .controls .eyebrow{display:none}
   .wk{width:29px;height:29px;font-size:12px}
@@ -481,7 +486,7 @@ function exCard(day, e, i){
          <span class="chip">Rest <b>${e.rest}</b></span>
          <span class="chip">Tempo <b>${e.tempo}</b></span>
          <span class="chip">RIR <b>${rir}</b></span>
-         <span class="chip">Start ≈ <b>${e.start}</b></span>
+         <span class="chip long">Start ≈ <b>${e.start}</b></span>
        </div>
      </div>
    </div>
