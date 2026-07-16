@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLATE — 8-Week Muscle & Strength Program</title>
+<meta name="description" content="An 8-week evidence-based beginner program: muscle, strength, athletic build. Thursday optional by design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..900&family=Archivo+Black&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F4F6; --card:#FFFFFF; --ink:#0E1116; --ink-2:#2A313A; --soft:#5B6470; --line:#E2E5E9; --line-2:#EDEFF2;
+  --red:#B9122C; --blue:#0B5CAD; --yellow:#C98A00; --green:#0B7A44; --steel:#8A929C;
+  --gold:#E4B54A;
+  --sh-sm:0 1px 2px rgba(14,17,22,.06);
+  --sh-md:0 1px 2px rgba(14,17,22,.05), 0 10px 28px rgba(14,17,22,.07);
+  --r-lg:18px; --r-md:12px; --r-sm:8px;
+  --display:'Archivo Black','Archivo',system-ui,sans-serif;
+  --body:'Archivo',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer}
+input,select{font-family:var(--mono)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
+
+/* ================= header ================= */
+header{background:linear-gradient(180deg,#12161C 0%,#0E1116 100%);color:#fff;padding:34px 0 30px;border-bottom:1px solid #000}
+.brand{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#D8213E,var(--red));border:5px solid #fff;box-shadow:0 0 0 3px rgba(255,255,255,.14),0 6px 18px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:14px;color:#fff;flex-shrink:0}
+header .eyebrow{color:var(--gold);margin-bottom:6px}
+h1{font-family:var(--display);font-size:clamp(26px,4.6vw,42px);letter-spacing:-.01em;text-transform:uppercase;line-height:1.02}
+.sub{color:#98A2AE;font-size:14.5px;margin-top:8px;max-width:620px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:#262D36;border:1px solid #262D36;border-radius:var(--r-md);overflow:hidden;margin-top:24px}
+.stat{background:#161B22;padding:12px 14px}
+.stat .eyebrow{color:#727D8A;font-size:9.5px}
+.stat b{display:block;font-family:var(--mono);font-size:16.5px;font-weight:800;color:#fff;margin-top:3px}
+.stat b em{font-style:normal;font-size:11px;color:#727D8A;font-weight:600}
+
+/* ================= sticky controls ================= */
+.controls{position:sticky;top:0;z-index:50;background:rgba(14,17,22,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #262D36}
+.controls .wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.controls .eyebrow{color:#727D8A}
+.weeks{display:flex;gap:6px;flex-wrap:wrap}
+.wk{width:34px;height:34px;border-radius:50%;border:1.5px solid #39424D;background:transparent;color:#B9C2CC;font-family:var(--mono);font-weight:600;font-size:13px;transition:transform .12s,background .12s}
+.wk:hover{transform:scale(1.08);border-color:#5B6470}
+.wk.on{background:#fff;color:var(--ink);border-color:#fff;font-weight:800}
+.wk.deload{border-style:dashed}
+.phase{font-family:var(--mono);font-size:12px;color:var(--gold);flex:1;min-width:240px;line-height:1.45}
+.phase-mini{display:none;font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.08em}
+
+/* ================= day nav ================= */
+nav.days{padding:26px 0 4px}
+nav.days .wrap{display:flex;gap:6px;flex-wrap:wrap}
+.plate{display:flex;flex-direction:column;align-items:center;gap:7px;background:none;border:none;padding:8px 10px;border-radius:var(--r-md);transition:background .15s}
+.plate:hover{background:#E9EBEE}
+.plate .disc{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:14px;color:#fff;box-shadow:inset 0 0 0 3px rgba(255,255,255,.4),inset 0 0 0 14px rgba(0,0,0,.10),var(--sh-sm);transition:transform .12s,box-shadow .12s}
+.plate:hover .disc{transform:translateY(-2px)}
+.plate.on{background:#fff;box-shadow:var(--sh-sm)}
+.plate.on .disc{box-shadow:inset 0 0 0 3px rgba(255,255,255,.4),inset 0 0 0 14px rgba(0,0,0,.10),0 0 0 2.5px var(--ink)}
+.plate span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.plate.on span{color:var(--ink);font-weight:800}
+.plate.tab-extra .disc{background:linear-gradient(180deg,#2A313A,#161B22);font-size:10.5px;letter-spacing:.06em}
+
+/* ================= panels ================= */
+main{padding:8px 0 70px}
+.panel{display:none}
+.panel.on{display:block;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.dayhead{margin:26px 0 8px}
+.dayhead .eyebrow{margin-bottom:4px}
+.dayhead .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.dayhead h2{font-family:var(--display);font-size:clamp(22px,3.6vw,30px);text-transform:uppercase;letter-spacing:-.01em}
+.tag{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;padding:5px 12px;border-radius:999px;color:#fff;text-transform:uppercase}
+.daynote{color:var(--soft);font-size:15px;max-width:740px;margin:6px 0 18px}
+.optional-note{background:#EAF4EE;border:1px solid #BFDCCB;border-left:4px solid var(--green);border-radius:var(--r-md);padding:13px 16px;font-size:14px;margin-bottom:18px;max-width:740px}
+.warm{background:#12161C;color:#C6CDD5;border-radius:var(--r-md);padding:15px 18px;font-size:13.5px;margin-bottom:20px;font-family:var(--mono);line-height:1.6;box-shadow:var(--sh-sm)}
+.warm b{color:var(--gold);font-weight:600}
+
+/* ================= exercise cards ================= */
+.ex{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);margin-bottom:14px;box-shadow:var(--sh-sm);transition:box-shadow .18s,transform .18s;overflow:hidden}
+.ex:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}
+.exhead{display:flex;align-items:flex-start;gap:16px;padding:18px 20px 0}
+.exnum{font-family:var(--display);font-size:22px;line-height:1;margin-top:2px;min-width:38px}
+.exhead h3{font-size:17.5px;font-weight:800;letter-spacing:-.01em}
+.meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.chip{font-family:var(--mono);font-size:12px;background:#F6F7F8;border:1px solid var(--line);padding:4px 10px;border-radius:var(--r-sm);color:var(--ink-2);white-space:nowrap}
+.chip b{font-weight:800;color:var(--ink)}
+.exbody{display:grid;grid-template-columns:1fr 270px;gap:20px;padding:14px 20px 18px 74px}
+.cues{font-size:14px;color:var(--soft)}
+.cues b{color:var(--ink)}
+.cues .avoid{display:block;margin-top:8px}
+.cues .avoid b{color:var(--red)}
+.exlog{border-left:1px solid var(--line-2);padding-left:20px;display:flex;flex-direction:column;gap:11px}
+.done{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;user-select:none;font-weight:600}
+.done input{width:17px;height:17px;accent-color:var(--green)}
+.logw{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px}
+.logw input{width:80px;padding:7px 9px;border:1.5px solid var(--line);border-radius:var(--r-sm);font-size:14px;font-weight:600;background:#FBFBFC}
+.logw input:focus{border-color:var(--ink)}
+.vidbtns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:var(--r-sm);padding:7px 13px;font-size:12.5px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background .12s,color .12s}
+.btn:hover{background:var(--ink);color:#fff}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn.red:hover{background:#9A0F25;border-color:#9A0F25}
+.vidzone{display:none;padding:0 20px 20px 74px}
+.vidzone.open{display:block}
+.vidzone .paste{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.vidzone input{flex:1;min-width:220px;padding:9px 11px;border:1.5px solid var(--line);border-radius:var(--r-sm);font-size:13px;background:#FBFBFC}
+.frame{position:relative;max-width:330px;aspect-ratio:9/16;border-radius:var(--r-md);overflow:hidden;background:#000;box-shadow:var(--sh-md)}
+.frame.wide{max-width:620px;aspect-ratio:16/9}
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ================= content blocks ================= */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-sm)}
+.card h3{font-family:var(--display);font-size:14.5px;text-transform:uppercase;letter-spacing:.02em;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.card h4{font-size:13.5px;margin:14px 0 4px;text-transform:uppercase;font-family:var(--mono);letter-spacing:.06em;color:var(--ink-2)}
+.card p,.card li{font-size:14px;color:var(--soft)}
+.card p+p{margin-top:8px}
+.card ul{padding-left:18px;margin-top:4px}
+.card li{margin-bottom:7px}
+.card b{color:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);padding:8px 8px;border-bottom:2px solid var(--ink)}
+td{padding:8px;border-bottom:1px solid var(--line-2);color:var(--ink-2)}
+tr:nth-child(even) td{background:#FAFBFC}
+td.num{font-family:var(--mono);font-weight:600;white-space:nowrap}
+tr.total td{border-top:2px solid var(--ink);border-bottom:none;font-weight:800;color:var(--ink);background:#F6F7F8}
+.callout{background:#FCF6E8;border:1px solid #EBDCB2;border-left:4px solid var(--yellow);border-radius:var(--r-md);padding:15px 18px;font-size:14px;margin:18px 0;color:var(--ink-2)}
+.callout b{color:var(--ink)}
+
+/* progress */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:16px}
+.pinput{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.pinput input{padding:8px 10px;border:1.5px solid var(--line);border-radius:var(--r-sm);width:104px;font-size:14px;background:#FBFBFC}
+#wchart{width:100%;height:auto;margin-top:6px}
+.prlist{font-family:var(--mono);font-size:12.5px}
+.prlist div{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.prlist b{font-weight:600}
+
+.storage-note{font-family:var(--mono);font-size:11px;color:var(--soft);margin-top:22px}
+footer{background:#0E1116;color:#727D8A;padding:26px 0;font-size:12.5px;text-align:center;font-family:var(--mono);line-height:1.7}
+footer b{color:#B9C2CC;font-weight:600}
+
+@media(max-width:760px){
+  .controls .wrap{gap:10px;padding-top:9px;padding-bottom:9px}
+  .controls .eyebrow{display:none}
+  .wk{width:29px;height:29px;font-size:12px}
+  .phase{display:none}
+  .phase-mini{display:inline-block}
+  .exbody{grid-template-columns:1fr;padding-left:20px;gap:14px}
+  .exlog{border-left:none;padding-left:0;border-top:1px solid var(--line-2);padding-top:14px;flex-direction:row;flex-wrap:wrap;align-items:center;gap:14px}
+  .vidzone{padding-left:20px}
+  .exnum{min-width:30px;font-size:18px}
+  .plate .disc{width:48px;height:48px;font-size:12px}
+  .stats{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">25</div>
+      <div>
+        <div class="eyebrow">8-Week Beginner Program · Evidence-Based</div>
+        <h1>Plate — Muscle &amp; Strength</h1>
+        <p class="sub">Push · Pull · Legs, twice through — strength first, hypertrophy second. Thursday is optional by design: skip it and nothing breaks.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="eyebrow">Start</span><b>53 <em>kg</em></b></div>
+      <div class="stat"><span class="eyebrow">Target</span><b>60–63 <em>kg</em></b></div>
+      <div class="stat"><span class="eyebrow">Height</span><b>165 <em>cm</em></b></div>
+      <div class="stat"><span class="eyebrow">Calories</span><b>2,850 <em>/day</em></b></div>
+      <div class="stat"><span class="eyebrow">Protein</span><b>105–115 <em>g</em></b></div>
+      <div class="stat"><span class="eyebrow">Sleep</span><b>7.5–9 <em>h</em></b></div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <span class="eyebrow" id="wkLabel">Week</span>
+    <div class="weeks" id="weeks" role="tablist" aria-label="Program week"></div>
+    <span class="phase-mini" id="phaseMini"></span>
+    <div class="phase" id="phaseNote"></div>
+  </div>
+</div>
+
+<nav class="days"><div class="wrap" id="dayNav"></div></nav>
+
+<main><div class="wrap" id="panels"></div></main>
+
+<footer><div class="wrap"><b>The only rule:</b> log every lift, every session. All sets at the top of the rep range at target RIR → add <b>2.5 kg upper / 5 kg lower</b> next time.</div></footer>
+
+<script>
+/* ================= storage (localStorage on GitHub Pages / local; in-memory fallback in restricted previews) ================= */
+const mem = {};
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v===null ? (k in mem ? mem[k] : d) : JSON.parse(v);}catch(e){ return k in mem ? mem[k] : d; } },
+  set(k, v){ mem[k]=v; try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* ================= program data ================= */
+const PHASES = [
+  {w:[1,2], name:"FOUNDATION", rir:"3–4", note:"Weeks 1–2 · Foundation — light weights, perfect form. Deadlift & squat stay light; you are practising, not testing."},
+  {w:[3,4,5], name:"BUILD", rir:"2–3", note:"Weeks 3–5 · Build — add weight whenever you hit all sets at the top of the rep range."},
+  {w:[6,7], name:"PUSH", rir:"1–2", note:"Weeks 6–7 · Push — heaviest weeks. Stop 1–2 reps before failure, never grind with bad form."},
+  {w:[8], name:"DELOAD", rir:"4–5", note:"Week 8 · Deload — same exercises at ~60% of your usual weights. Recovery is where muscle is built."}
+];
+
+const yq = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
+
+const DAYS = [
+{
+ id:"d1", label:"Mon", title:"Push · Strength", color:"var(--red)", kg:"25",
+ note:"Chest, shoulders, triceps. Heavy compounds first while you're fresh. ~70–80 min.",
+ warm:"<b>Warm-up (10 min):</b> 5 min incline walk → arm circles ×15 each way → band pull-aparts ×20 → scap push-ups ×10 → then 2–3 ramp-up sets on Bench (empty bar ×10, small jump ×6, jump ×3) before work sets.",
+ finisher:"<b>Finish:</b> 10–15 min incline walk (zone 2 — you can hold a conversation).",
+ ex:[
+  {n:"Barbell Bench Press", s:"4 × 5–6", rest:"3 min", tempo:"2-1-1", start:"20–25 kg",
+   cues:"Shoulder blades pinched back and down onto the bench · slight arch, feet planted · bar touches lower chest · press up and slightly back.",
+   avoid:"Bouncing the bar off the chest; flaring elbows to 90°.",
+   q:yq("Jeff Nippard bench press technique")},
+  {n:"Seated Dumbbell Shoulder Press", s:"3 × 6–8", rest:"2.5 min", tempo:"2-0-1", start:"7.5–10 kg each",
+   cues:"Back against the pad · dumbbells start at ear height · press up until arms lock, biceps near ears.",
+   avoid:"Arching the lower back off the pad; half reps.",
+   q:yq("Renaissance Periodization dumbbell shoulder press technique")},
+  {n:"Incline Dumbbell Press", s:"3 × 8–10", rest:"2 min", tempo:"3-0-1", start:"7.5–10 kg each",
+   cues:"Bench at 30° · lower slowly to outer chest · elbows ~45° from torso.",
+   avoid:"Setting the incline too steep (turns it into a shoulder press).",
+   q:yq("Jeff Nippard incline dumbbell press form")},
+  {n:"Cable Fly", s:"3 × 12–15", rest:"90 s", tempo:"2-1-2", start:"lightest stack +1",
+   cues:"Slight elbow bend, keep it fixed · hug-a-barrel motion · squeeze 1 s at the middle.",
+   avoid:"Turning it into a press by bending the elbows more as you fatigue.",
+   q:yq("Renaissance Periodization cable fly technique")},
+  {n:"Dumbbell Lateral Raise", s:"3 × 12–15", rest:"60–90 s", tempo:"2-0-2", start:"2.5–5 kg each",
+   cues:"Lean slightly forward · lead with the elbows · raise to shoulder height only · pinky slightly up.",
+   avoid:"Swinging with momentum; shrugging the traps.",
+   q:yq("Jeff Nippard lateral raise technique")},
+  {n:"Tricep Rope Pushdown", s:"3 × 10–12", rest:"90 s", tempo:"2-0-1", start:"light stack",
+   cues:"Elbows pinned to your sides · push down and split the rope · full lockout.",
+   avoid:"Elbows drifting forward — that turns it into a lat exercise.",
+   q:yq("Renaissance Periodization tricep pushdown technique")}
+ ]
+},
+{
+ id:"d2", label:"Tue", title:"Pull · Strength", color:"var(--blue)", kg:"20",
+ note:"Back, rear delts, biceps. Deadlift stays light for the first 2 weeks — you're learning the hinge. ~70–80 min.",
+ warm:"<b>Warm-up (10 min):</b> 5 min row or bike → cat-cow ×10 → dead-bugs ×10 → banded good-mornings ×15 → light lat-pulldown ×15 → ramp-up sets on Deadlift.",
+ finisher:"<b>Finish:</b> 10–15 min brisk walk.",
+ ex:[
+  {n:"Deadlift", s:"3 × 5", rest:"3 min", tempo:"1-1-2", start:"30–40 kg (weeks 1–2 stay here)",
+   cues:"Bar over mid-foot · hinge, don't squat it · chest up, back flat, lats tight ('protect your armpits') · push the floor away · stand tall, don't lean back.",
+   avoid:"Rounding the lower back; jerking the bar off the floor.",
+   q:yq("Alan Thrall how to deadlift")},
+  {n:"Pull-Ups (or Assisted / Band)", s:"4 × 6–10", rest:"2.5 min", tempo:"1-0-3", start:"assisted machine or band",
+   cues:"Full hang at the bottom · pull elbows to your ribs · chin over bar · lower for 3 s.",
+   avoid:"Kipping/swinging; cutting the bottom half of the rep.",
+   q:yq("Jeff Nippard pull up technique")},
+  {n:"Barbell Row", s:"3 × 6–8", rest:"2.5 min", tempo:"1-1-2", start:"20–25 kg",
+   cues:"Hinge to ~45° torso · pull the bar to your lower ribs · squeeze shoulder blades · keep the back flat.",
+   avoid:"Standing up as you row; yanking with the arms.",
+   q:yq("Jeff Nippard barbell row technique")},
+  {n:"Lat Pulldown", s:"3 × 10–12", rest:"90 s", tempo:"2-0-2", start:"~half body weight on stack",
+   cues:"Grip just outside shoulders · pull to upper chest · drive elbows down, not back.",
+   avoid:"Leaning way back and heaving.",
+   q:yq("Renaissance Periodization lat pulldown technique")},
+  {n:"Face Pull", s:"3 × 15", rest:"60 s", tempo:"2-1-2", start:"light stack",
+   cues:"Rope at face height · pull toward your eyes · finish in a double-biceps pose · builds rear delts & posture.",
+   avoid:"Using so much weight the torso rocks.",
+   q:yq("Jeff Nippard face pull technique")},
+  {n:"Barbell / EZ-Bar Curl", s:"3 × 8–10", rest:"90 s", tempo:"2-0-2", start:"10–15 kg",
+   cues:"Elbows glued to sides · curl up, squeeze, lower under control.",
+   avoid:"Swinging the hips to lift the weight.",
+   q:yq("Jeff Nippard bicep curl technique")}
+ ]
+},
+{
+ id:"d3", label:"Wed", title:"Legs · Strength", color:"var(--yellow)", kg:"15",
+ note:"Quads, hamstrings, glutes, calves, core. Squat depth beats squat weight. ~70–80 min.",
+ warm:"<b>Warm-up (10 min):</b> 5 min cycle → leg swings ×12 each · bodyweight squats ×15 · ankle rocks ×10 · glute bridges ×15 → ramp-up sets on Squat.",
+ finisher:"<b>Finish:</b> 10 min easy cycling.",
+ ex:[
+  {n:"Back Squat", s:"4 × 5–6", rest:"3 min", tempo:"3-0-1", start:"20–30 kg (empty bar week 1)",
+   cues:"Bar on upper traps · big breath, brace like you're about to be punched · sit down between your heels · hit at least parallel · knees track over toes.",
+   avoid:"Heels lifting; knees caving inward; half-depth reps.",
+   q:yq("Squat University how to squat")},
+  {n:"Romanian Deadlift", s:"3 × 8–10", rest:"2.5 min", tempo:"3-1-1", start:"20–30 kg",
+   cues:"Soft knees · push hips straight back · bar slides down the thighs · stop when hamstrings scream (mid-shin) · squeeze glutes to stand.",
+   avoid:"Bending the knees more as you lower (that's a squat, not a hinge).",
+   q:yq("Squat University Romanian deadlift")},
+  {n:"Leg Press", s:"3 × 10", rest:"2 min", tempo:"3-0-1", start:"40–60 kg",
+   cues:"Feet shoulder-width mid-platform · lower until knees near chest · never lock knees hard.",
+   avoid:"Lower back rolling off the pad at the bottom.",
+   q:yq("Renaissance Periodization leg press technique")},
+  {n:"Lying Leg Curl", s:"3 × 12", rest:"90 s", tempo:"2-1-2", start:"light stack",
+   cues:"Hips pressed into the pad · curl heels to glutes · slow lower.",
+   avoid:"Hips popping up to cheat the rep.",
+   q:yq("Renaissance Periodization leg curl technique")},
+  {n:"Standing Calf Raise", s:"4 × 15", rest:"60 s", tempo:"2-2-2", start:"body weight → add load",
+   cues:"Full stretch at the bottom (2 s pause) · rise to the very top · pause again.",
+   avoid:"Fast bouncing half reps.",
+   q:yq("Jeff Nippard calf raise technique")},
+  {n:"Plank", s:"3 × 45 s", rest:"60 s", tempo:"hold", start:"body weight",
+   cues:"Straight line ear→ankle · squeeze glutes · breathe.",
+   avoid:"Hips sagging or piking up.",
+   q:yq("Squat University plank technique")}
+ ]
+},
+{
+ id:"d4", label:"Thu · Opt", title:"Optional · Arms + Recovery", color:"var(--green)", kg:"10",
+ optional:true,
+ note:"Everything here is bonus volume — every muscle below is already trained on other days. ~45–60 min.",
+ warm:"<b>Warm-up (5 min):</b> easy walk + arm circles + band pull-aparts ×20.",
+ finisher:"<b>Finish:</b> 10–15 min mobility — deep squat hold 3×30 s · hip-flexor stretch 2×30 s/side · doorway chest stretch 2×30 s · hamstring stretch 2×30 s/side.",
+ ex:[
+  {n:"Arnold Press", s:"3 × 10", rest:"90 s", tempo:"2-0-2", start:"5–7.5 kg each",
+   cues:"Start palms facing you · rotate out as you press · full lockout.",
+   avoid:"Arching the lower back.",
+   q:yq("Jeff Nippard arnold press")},
+  {n:"Dumbbell Lateral Raise", s:"3 × 15", rest:"60 s", tempo:"2-0-2", start:"2.5–5 kg",
+   cues:"Same cues as Monday — lighter, stricter, slower.",
+   avoid:"Momentum.",
+   q:yq("Jeff Nippard lateral raise technique")},
+  {n:"Incline Dumbbell Curl", s:"3 × 12", rest:"75 s", tempo:"2-0-3", start:"5 kg each",
+   cues:"Bench at 45° · arms hang behind torso for a deep biceps stretch · curl without moving the elbows.",
+   avoid:"Elbows drifting forward.",
+   q:yq("Jeff Nippard incline dumbbell curl")},
+  {n:"Overhead Tricep Extension", s:"3 × 12", rest:"75 s", tempo:"2-0-2", start:"one 7.5–10 kg DB",
+   cues:"Elbows point at the ceiling · lower behind the head for a stretch · extend fully.",
+   avoid:"Elbows flaring wide.",
+   q:yq("Renaissance Periodization overhead tricep extension")},
+  {n:"Hanging Knee Raise", s:"3 × 10", rest:"75 s", tempo:"2-1-2", start:"body weight",
+   cues:"Dead hang · curl knees to chest by tilting the pelvis · lower slow.",
+   avoid:"Swinging.",
+   q:yq("Jeff Nippard hanging knee raise abs")}
+ ]
+},
+{
+ id:"d5", label:"Fri", title:"Upper · Hypertrophy", color:"var(--red)", kg:"25",
+ note:"Chest + back together, higher reps, shorter rests. Chase the pump with honest form. ~70–80 min.",
+ warm:"<b>Warm-up (8 min):</b> 5 min incline walk → band pull-aparts ×20 → push-ups ×10 → light ramp-ups on Incline Press.",
+ finisher:"<b>Finish:</b> nothing extra — save your legs for Saturday.",
+ ex:[
+  {n:"Incline Barbell Press", s:"4 × 8", rest:"2.5 min", tempo:"3-0-1", start:"20 kg",
+   cues:"Bench 30° · bar touches just below the collarbone · press up and slightly back.",
+   avoid:"Bouncing; wrists bent back.",
+   q:yq("Jeff Nippard incline bench press technique")},
+  {n:"Chest-Supported / T-Bar Row", s:"4 × 8", rest:"2.5 min", tempo:"2-1-2", start:"light",
+   cues:"Chest glued to the pad · pull elbows back and down · 1 s squeeze.",
+   avoid:"Lifting the chest off the pad to heave.",
+   q:yq("Jeff Nippard chest supported row")},
+  {n:"Flat Dumbbell Press", s:"3 × 10", rest:"2 min", tempo:"3-0-1", start:"10 kg each",
+   cues:"Deeper stretch than barbell allows — use it · press up and slightly in.",
+   avoid:"Clanging the dumbbells at the top.",
+   q:yq("Renaissance Periodization dumbbell bench press")},
+  {n:"One-Arm Dumbbell Row", s:"3 × 10 / arm", rest:"90 s", tempo:"2-1-2", start:"12.5–15 kg",
+   cues:"Knee + hand on bench · flat back · pull the dumbbell to your hip pocket.",
+   avoid:"Rotating the torso open.",
+   q:yq("Jeff Nippard dumbbell row technique")},
+  {n:"Preacher / Machine Curl", s:"3 × 10", rest:"75 s", tempo:"2-0-3", start:"light",
+   cues:"Armpits over the pad · full extension at the bottom · no bouncing.",
+   avoid:"Cutting the bottom half.",
+   q:yq("Renaissance Periodization preacher curl")},
+  {n:"Skull Crushers", s:"3 × 10", rest:"75 s", tempo:"3-0-1", start:"10 kg EZ bar",
+   cues:"Lower the bar to your forehead/behind head · elbows stay narrow and still.",
+   avoid:"Elbows flaring; turning it into a press.",
+   q:yq("Jeff Nippard skull crushers technique")}
+ ]
+},
+{
+ id:"d6", label:"Sat", title:"Lower + Athletic", color:"var(--yellow)", kg:"15",
+ note:"Power first (jumps), then legs, then carries. This is the day that builds the athlete, not just the physique. ~75–85 min.",
+ warm:"<b>Warm-up (10 min):</b> 5 min cycle → leg swings · lunges ×10/leg · pogo hops ×20 → jump practice before loading.",
+ finisher:"<b>Finish:</b> 10 min incline walk + full stretch — quads, hamstrings, hips, calves, 30 s each.",
+ ex:[
+  {n:"Box Jump", s:"3 × 5", rest:"2 min", tempo:"explosive", start:"low box (30–45 cm)",
+   cues:"Swing arms · jump and land soft, quiet, knees out · step down, never jump down.",
+   avoid:"Chasing box height with an ugly landing.",
+   q:yq("Squat University box jump technique")},
+  {n:"Front Squat or Hack Squat", s:"4 × 8", rest:"2.5 min", tempo:"3-0-1", start:"20 kg / light sled",
+   cues:"Front squat: elbows high, bar on shoulders · torso stays tall · sit straight down.",
+   avoid:"Elbows dropping → bar rolls forward.",
+   q:yq("Squat University front squat technique")},
+  {n:"Romanian Deadlift", s:"3 × 10", rest:"2 min", tempo:"3-1-1", start:"same as Wednesday",
+   cues:"Same hinge as Wednesday, slightly lighter, feel the hamstrings the whole rep.",
+   avoid:"Rounding as you fatigue.",
+   q:yq("Squat University Romanian deadlift")},
+  {n:"Bulgarian Split Squat", s:"3 × 10 / leg", rest:"90 s", tempo:"2-0-1", start:"body weight → 5 kg DBs",
+   cues:"Rear foot on bench · front shin near vertical · drop the back knee straight down.",
+   avoid:"Bouncing off the back leg.",
+   q:yq("Squat University Bulgarian split squat")},
+  {n:"Leg Extension", s:"3 × 15", rest:"75 s", tempo:"2-1-2", start:"light stack",
+   cues:"Full lockout, 1 s squeeze at the top · control the lower.",
+   avoid:"Kicking the weight up fast.",
+   q:yq("Renaissance Periodization leg extension technique")},
+  {n:"Seated Calf Raise", s:"4 × 15–20", rest:"60 s", tempo:"2-2-2", start:"light",
+   cues:"Deep stretch, pause, full rise, pause.",
+   avoid:"Bouncing.",
+   q:yq("Jeff Nippard seated calf raise")},
+  {n:"Farmer Carry", s:"3 × 30 m", rest:"90 s", tempo:"walk tall", start:"12.5–15 kg each hand",
+   cues:"Heavy dumbbells · chest up, shoulders back · walk like you own the gym. Grip, traps, core, posture in one move.",
+   avoid:"Leaning or shuffling.",
+   q:yq("Squat University farmer carry")}
+ ]
+}
+];
+
+/* ================= week bar ================= */
+let curWeek = store.get("week", 1);
+const weeksEl = document.getElementById("weeks");
+for(let w=1; w<=8; w++){
+  const b=document.createElement("button");
+  b.className="wk"+(w===8?" deload":""); b.textContent=w; b.setAttribute("role","tab");
+  b.setAttribute("aria-label","Week "+w);
+  b.onclick=()=>{curWeek=w; store.set("week",w); renderWeeks(); renderPanels();};
+  weeksEl.appendChild(b);
+}
+function phaseFor(w){ return PHASES.find(p=>p.w.includes(w)); }
+function renderWeeks(){
+  [...weeksEl.children].forEach((b,i)=>b.classList.toggle("on", i+1===curWeek));
+  const ph = phaseFor(curWeek);
+  document.getElementById("phaseNote").textContent = ph.note;
+  document.getElementById("phaseMini").textContent = `W${curWeek} · ${ph.name} · RIR ${ph.rir}`;
+}
+
+/* ================= day nav ================= */
+const EXTRA = [
+  {id:"nut", label:"Nutrition", disc:"EAT"},
+  {id:"prog", label:"Progress", disc:"LOG"},
+  {id:"guide", label:"Guide", disc:"?"}
+];
+let curTab = store.get("tab","d1");
+const nav = document.getElementById("dayNav");
+DAYS.forEach(d=>{
+  const b=document.createElement("button"); b.className="plate"; b.dataset.tab=d.id;
+  b.innerHTML=`<span class="disc" style="background:${d.color}">${d.kg}</span><span>${d.label}</span>`;
+  b.onclick=()=>selectTab(d.id); nav.appendChild(b);
+});
+EXTRA.forEach(t=>{
+  const b=document.createElement("button"); b.className="plate tab-extra"; b.dataset.tab=t.id;
+  b.innerHTML=`<span class="disc">${t.disc}</span><span>${t.label}</span>`;
+  b.onclick=()=>selectTab(t.id); nav.appendChild(b);
+});
+function selectTab(id){ curTab=id; store.set("tab",id);
+  [...nav.children].forEach(b=>b.classList.toggle("on", b.dataset.tab===id));
+  [...document.querySelectorAll(".panel")].forEach(p=>p.classList.toggle("on", p.id==="p-"+id));
+}
+
+/* ================= panels ================= */
+const panels = document.getElementById("panels");
+
+function ytId(url){
+  const m = url.match(/(?:shorts\/|watch\?v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function exCard(day, e, i){
+  const key = `w${curWeek}_${day.id}_${i}`;
+  const wKey = `wt_${key}`, dKey = `dn_${key}`, vKey = `vid_${day.id}_${i}`;
+  const savedW = store.get(wKey,""); const savedD = store.get(dKey,false);
+  const savedV = store.get(vKey,"");
+  const rir = phaseFor(curWeek).rir;
+  const num = String(i+1).padStart(2,"0");
+  const card = document.createElement("article"); card.className="ex";
+  card.innerHTML = `
+   <div class="exhead">
+     <span class="exnum" style="color:${day.color}">${num}</span>
+     <div>
+       <h3>${e.n}</h3>
+       <div class="meta">
+         <span class="chip"><b>${e.s}</b></span>
+         <span class="chip">Rest <b>${e.rest}</b></span>
+         <span class="chip">Tempo <b>${e.tempo}</b></span>
+         <span class="chip">RIR <b>${rir}</b></span>
+         <span class="chip">Start ≈ <b>${e.start}</b></span>
+       </div>
+     </div>
+   </div>
+   <div class="exbody">
+     <p class="cues"><b>Form:</b> ${e.cues}<span class="avoid"><b>Avoid:</b> ${e.avoid}</span></p>
+     <div class="exlog">
+       <label class="done"><input type="checkbox" ${savedD?"checked":""}> Done</label>
+       <label class="logw">Weight <input type="number" step="0.5" min="0" value="${savedW}" placeholder="kg"> kg</label>
+       <div class="vidbtns">
+         <a class="btn" href="${e.q}" target="_blank" rel="noopener">▶ Find pro video</a>
+         <button class="btn red toggler">${savedV?"My video":"Embed video"}</button>
+       </div>
+     </div>
+   </div>
+   <div class="vidzone">
+     <div class="paste">
+       <input type="text" placeholder="Paste a YouTube Short / video link from a pro coach…" value="${savedV}">
+       <button class="btn savevid">Save &amp; embed</button>
+     </div>
+     <div class="frameHolder"></div>
+   </div>`;
+  const done = card.querySelector(".done input");
+  done.onchange = ()=> store.set(dKey, done.checked);
+  const wt = card.querySelector(".logw input");
+  wt.onchange = ()=> store.set(wKey, wt.value);
+  const zone = card.querySelector(".vidzone");
+  const holder = card.querySelector(".frameHolder");
+  function renderVid(url){
+    const id = ytId(url||"");
+    holder.innerHTML = id
+      ? `<div class="frame ${url.includes("shorts/")?"":"wide"}"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="Form video: ${e.n}" allowfullscreen loading="lazy"></iframe></div>`
+      : (url ? `<p class="cues">That doesn't look like a YouTube link — paste the full URL of a Short or video.</p>` : "");
+  }
+  card.querySelector(".toggler").onclick = ()=>{ zone.classList.toggle("open"); if(savedV) renderVid(savedV); };
+  card.querySelector(".savevid").onclick = ()=>{
+    const url = card.querySelector(".paste input").value.trim();
+    store.set(vKey, url); renderVid(url);
+  };
+  if(savedV) renderVid(savedV);
+  return card;
+}
+
+function dayPanel(d){
+  const p=document.createElement("section"); p.className="panel"; p.id="p-"+d.id;
+  const wknote = curWeek===8 ? `<div class="callout"><b>Deload week:</b> use ~60% of the weights you logged in week 7. Same reps — everything should feel easy.</div>` : "";
+  p.innerHTML = `
+    <div class="dayhead">
+      <div class="eyebrow">${d.label} · ${phaseFor(curWeek).name} · Week ${curWeek}</div>
+      <div class="row"><h2>${d.title}</h2><span class="tag" style="background:${d.color}">${d.optional?"Optional":"Session"}</span></div>
+    </div>
+    <p class="daynote">${d.note}</p>
+    ${d.optional?`<div class="optional-note"><b>Can't make it today?</b> Skip guilt-free. This day is pure bonus — the 5-day version of this program is complete without it.</div>`:""}
+    ${wknote}
+    <div class="warm">${d.warm}</div>`;
+  d.ex.forEach((e,i)=> p.appendChild(exCard(d,e,i)) );
+  const f=document.createElement("div"); f.className="warm"; f.innerHTML=d.finisher; p.appendChild(f);
+  return p;
+}
+
+/* ---------- nutrition panel ---------- */
+function nutritionPanel(){
+  const p=document.createElement("section"); p.className="panel"; p.id="p-nut";
+  p.innerHTML = `
+  <div class="dayhead">
+    <div class="eyebrow">Fuel · The other half of the program</div>
+    <div class="row"><h2>Nutrition</h2><span class="tag" style="background:var(--ink)">Eat to grow</span></div>
+  </div>
+  <p class="daynote">Your training can be perfect — at 53 kg the surplus is what actually moves the scale. Estimates are approximate; weigh yourself weekly and adjust.</p>
+  <div class="grid2">
+   <div class="card">
+    <h3>Your current diet ≈</h3>
+    <table>
+     <tr><th>Meal</th><th>kcal</th><th>Protein</th></tr>
+     <tr><td>6 soaked almonds</td><td class="num">~45</td><td class="num">1 g</td></tr>
+     <tr><td>2 roti + sabzi (11 AM)</td><td class="num">~350</td><td class="num">9 g</td></tr>
+     <tr><td>2 eggs + banana + dry fruits</td><td class="num">~420</td><td class="num">17 g</td></tr>
+     <tr><td>Rice + dal + sabzi (+60 g meat)</td><td class="num">~550</td><td class="num">24 g</td></tr>
+     <tr><td>Banana-date shake</td><td class="num">~380</td><td class="num">7 g</td></tr>
+     <tr><td>200 g grilled chicken (9 PM)</td><td class="num">~330</td><td class="num">55 g</td></tr>
+     <tr><td>2 roti + sabzi (11 PM)</td><td class="num">~350</td><td class="num">9 g</td></tr>
+     <tr class="total"><td>Total</td><td class="num">~2,400</td><td class="num">~100–110 g</td></tr>
+    </table>
+    <p style="margin-top:12px">Verdict: protein is actually decent for your size. <b>Calories are the bottleneck</b> — you're eating close to maintenance, which is why you're stuck at 53 kg.</p>
+   </div>
+   <div class="card">
+    <h3>Targets while bulking</h3>
+    <ul>
+     <li><b>Calories:</b> ~2,800–2,900 kcal/day (≈ +400–500 surplus)</li>
+     <li><b>Protein:</b> 105–115 g/day (≈ 2 g per kg)</li>
+     <li><b>Weight gain:</b> 0.25–0.5 kg per week. Faster than that = mostly fat.</li>
+     <li><b>Water:</b> 2.5–3.5 L/day (more on training days)</li>
+     <li><b>Sleep:</b> 7.5–9 h, same schedule daily — this is where muscle is actually built</li>
+    </ul>
+    <h4>Rule of thumb</h4>
+    <p>If the weekly average weight didn't go up for 2 weeks → add ~200 kcal (easiest: 1 extra glass of full-fat milk + 1 tbsp peanut butter).</p>
+   </div>
+   <div class="card">
+    <h3>5 cheap upgrades (adds ~450 kcal)</h3>
+    <ul>
+     <li><b>Milk in the shake:</b> 100 ml → 300 ml full-fat (+130 kcal, +6 g protein)</li>
+     <li><b>3rd egg</b> at the 2 PM meal (+75 kcal, +6 g protein)</li>
+     <li><b>1 tsp ghee</b> on rotis, both meals (+90 kcal)</li>
+     <li><b>40 g peanuts or 2 tbsp peanut butter</b> anytime (+230 kcal, +9 g protein)</li>
+     <li><b>Bigger rice portion</b> post-workout — carbs after training fuel recovery</li>
+    </ul>
+    <p>Paneer, curd, chana, and rajma are your friends on no-meat days.</p>
+   </div>
+   <div class="card">
+    <h3>Supplements — honest answers</h3>
+    <ul>
+     <li><b>Creatine monohydrate — yes.</b> 3–5 g every day, any time, with anything. Cheapest, most-proven supplement that exists. Expect +1–1.5 kg water weight in weeks 1–2 — normal and good.</li>
+     <li><b>Whey — optional.</b> It's just convenient protein. On days you hit 105 g+ from food, you don't need it. On busy days, 1 scoop in your shake fixes the gap.</li>
+     <li><b>Fish oil — only if</b> you eat fish less than twice a week.</li>
+     <li><b>Multivitamin — skip.</b> Eggs, dal, sabzi, fruit, nuts — you're covered.</li>
+     <li><b>Mass gainers — skip.</b> Overpriced sugar. Your banana-date shake IS a mass gainer.</li>
+    </ul>
+   </div>
+  </div>
+  <div class="callout"><b>Realistic timeline:</b> 60–63 kg in roughly 4–6 months · visible muscle change in 3–4 months · strength climbs almost weekly for the first 6 months (beginner gains) · a clearly athletic look with the V-taper by month 6–9. Anyone promising faster is selling something.</div>`;
+  return p;
+}
+
+/* ---------- progress panel ---------- */
+function progressPanel(){
+  const p=document.createElement("section"); p.className="panel"; p.id="p-prog";
+  p.innerHTML = `
+  <div class="dayhead">
+    <div class="eyebrow">Measure · What gets tracked gets built</div>
+    <div class="row"><h2>Progress</h2><span class="tag" style="background:var(--ink)">53 → 63 kg</span></div>
+  </div>
+  <p class="daynote">Weigh yourself 2–3 mornings a week after the toilet, before food. Judge the weekly average, never a single day.</p>
+  <div class="pgrid">
+   <div class="card">
+     <h3>Body weight</h3>
+     <div class="pinput">
+       <input type="number" id="bwVal" step="0.1" min="30" max="120" placeholder="kg">
+       <button class="btn red" id="bwAdd">Log today</button>
+     </div>
+     <svg id="wchart" viewBox="0 0 320 160" role="img" aria-label="Body weight chart"></svg>
+   </div>
+   <div class="card">
+     <h3>Strength records</h3>
+     <p>Log your top work-set (weight × reps) when it goes up.</p>
+     <div class="pinput">
+       <select id="prLift" style="padding:8px;border:1.5px solid var(--line);border-radius:8px;background:#FBFBFC">
+         <option>Squat</option><option>Bench Press</option><option>Deadlift</option>
+         <option>Overhead Press</option><option>Barbell Row</option><option>Pull-ups</option>
+       </select>
+       <input type="text" id="prVal" placeholder="e.g. 40kg × 6" style="width:130px">
+       <button class="btn red" id="prAdd">Log PR</button>
+     </div>
+     <div class="prlist" id="prList"></div>
+   </div>
+   <div class="card">
+     <h3>Monthly measurements</h3>
+     <p>First Sunday of every month, relaxed, same conditions. Take front / side / back photos in the same light — photos catch what the mirror hides.</p>
+     <div class="pinput"><input id="mChest" placeholder="Chest cm"><input id="mArm" placeholder="Arm cm"><input id="mWaist" placeholder="Waist cm"><input id="mThigh" placeholder="Thigh cm"><button class="btn red" id="mAdd">Save</button></div>
+     <div class="prlist" id="mList"></div>
+   </div>
+   <div class="card">
+     <h3>Overtraining check</h3>
+     <p>Deload early (drop to 60% weights for a week) if you get <b>2+ of these for a week straight</b>:</p>
+     <ul>
+      <li>Sleep got worse despite being tired</li>
+      <li>Resting heart rate up in the morning</li>
+      <li>Weights that felt easy now feel heavy</li>
+      <li>Joints ache (not muscle soreness)</li>
+      <li>Zero motivation to train</li>
+     </ul>
+     <p>As a beginner on 5 days/week with good food and sleep, this is unlikely — but know the signs.</p>
+   </div>
+  </div>
+  <p class="storage-note">Data is saved in this browser (localStorage) once the app is on GitHub Pages or opened locally. In a chat preview, entries last only for the session.</p>`;
+
+  const draw = ()=>{
+    const data = store.get("bw",[]);
+    const svg = p.querySelector("#wchart");
+    if(!data.length){ svg.innerHTML = `<text x="10" y="80" font-size="12" fill="#5B6470" font-family="JetBrains Mono">No entries yet — log your first weigh-in.</text>`; return; }
+    const vals = data.map(d=>d.v);
+    const min = Math.min(...vals)-1, max = Math.max(...vals)+1;
+    const X = i => 20 + (data.length===1?0:(i/(data.length-1))*280);
+    const Y = v => 140 - ((v-min)/(max-min))*120;
+    let path = data.map((d,i)=>`${i?"L":"M"}${X(i)},${Y(d.v)}`).join(" ");
+    svg.innerHTML = `
+      <line x1="20" y1="140" x2="300" y2="140" stroke="#E2E5E9"/>
+      <path d="${path}" fill="none" stroke="#B9122C" stroke-width="2.5" stroke-linecap="round"/>
+      ${data.map((d,i)=>`<circle cx="${X(i)}" cy="${Y(d.v)}" r="3.5" fill="#0E1116"/>`).join("")}
+      <text x="20" y="12" font-size="11" font-family="JetBrains Mono" fill="#5B6470">latest: ${vals[vals.length-1]} kg (${data.length} entries)</text>`;
+  };
+  p.querySelector("#bwAdd").onclick = ()=>{
+    const v = parseFloat(p.querySelector("#bwVal").value);
+    if(!v) return;
+    const data = store.get("bw",[]); data.push({t:Date.now(), v}); store.set("bw",data);
+    p.querySelector("#bwVal").value=""; draw();
+  };
+  draw();
+
+  const drawPr = ()=>{
+    const list = store.get("prs",[]);
+    p.querySelector("#prList").innerHTML = list.slice(-10).reverse()
+      .map(r=>`<div><span>${r.l}</span><b>${r.v}</b></div>`).join("") || "<div><span>No PRs yet</span><b>—</b></div>";
+  };
+  p.querySelector("#prAdd").onclick = ()=>{
+    const l=p.querySelector("#prLift").value, v=p.querySelector("#prVal").value.trim();
+    if(!v) return;
+    const list=store.get("prs",[]); list.push({l,v,t:Date.now()}); store.set("prs",list);
+    p.querySelector("#prVal").value=""; drawPr();
+  };
+  drawPr();
+
+  const drawM = ()=>{
+    const list = store.get("meas",[]);
+    p.querySelector("#mList").innerHTML = list.slice(-6).reverse()
+      .map(m=>`<div><span>${new Date(m.t).toLocaleDateString()}</span><b>C${m.c||"–"} A${m.a||"–"} W${m.w||"–"} T${m.th||"–"}</b></div>`).join("") || "";
+  };
+  p.querySelector("#mAdd").onclick = ()=>{
+    const g=id=>p.querySelector(id).value;
+    const m={t:Date.now(), c:g("#mChest"), a:g("#mArm"), w:g("#mWaist"), th:g("#mThigh")};
+    const list=store.get("meas",[]); list.push(m); store.set("meas",list); drawM();
+  };
+  drawM();
+  return p;
+}
+
+/* ---------- guide panel ---------- */
+function guidePanel(){
+  const p=document.createElement("section"); p.className="panel"; p.id="p-guide";
+  p.innerHTML = `
+  <div class="dayhead">
+    <div class="eyebrow">Operating manual · Read once</div>
+    <div class="row"><h2>How to run this program</h2></div>
+  </div>
+  <div class="grid2" style="margin-top:14px">
+   <div class="card">
+    <h3>Progressive overload — the only rule</h3>
+    <p>Every session, try to beat your logged numbers. When you complete <b>all sets at the top of the rep range</b> with good form at the target RIR:</p>
+    <ul><li>Upper-body lifts → add <b>2.5 kg</b> next session</li>
+        <li>Lower-body lifts → add <b>5 kg</b> next session</li>
+        <li>Dumbbells → jump to the next pair</li></ul>
+    <p><b>RIR = Reps In Reserve.</b> "RIR 2" means stop when you could still do 2 more clean reps. Beginners grow perfectly well far from failure — form first.</p>
+   </div>
+   <div class="card">
+    <h3>Weeks 1–2 are technique weeks</h3>
+    <p>Use embarrassingly light weights. Empty bar on squat and bench is fine. Deadlift stays at 30–40 kg. You are buying an injury-free year — the best trade in fitness.</p>
+    <h4>Breathing on big lifts</h4>
+    <p>Big breath into the belly → brace → perform the rep → exhale at the top. Never hold breath through multiple reps.</p>
+   </div>
+   <div class="card">
+    <h3>Missing days</h3>
+    <ul>
+     <li><b>Miss Thursday:</b> nothing to do — it's optional by design.</li>
+     <li><b>Miss any other day:</b> shift the week forward one day; drop Thursday that week.</li>
+     <li><b>Miss a whole week:</b> repeat the last completed week's weights.</li>
+    </ul>
+   </div>
+   <div class="card">
+    <h3>Cardio that doesn't kill gains</h3>
+    <p>Only easy zone-2 work (incline walk / cycle), 10–15 min after lifting or on rest days. It aids recovery and appetite. <b>No HIIT while bulking at 53 kg</b> — it burns the surplus you're fighting to eat.</p>
+   </div>
+   <div class="card">
+    <h3>Videos</h3>
+    <p>Every exercise has a <b>Find pro video</b> button — it searches YouTube pre-filtered to trusted coaches (Jeff Nippard, Squat University, Renaissance Periodization / Dr. Mike, Alan Thrall). Pick a video from those channels, copy its link, hit <b>Embed video</b>, paste, save — it's embedded in your app permanently.</p>
+   </div>
+   <div class="card">
+    <h3>After week 8</h3>
+    <p>Run the program again. Weeks 1–2 of round two start at your week-7 weights minus ~5%. Two or three rounds (4–6 months) is realistically what takes you from 53 to 60–63 kg.</p>
+   </div>
+  </div>`;
+  return p;
+}
+
+/* ================= render ================= */
+function renderPanels(){
+  panels.innerHTML="";
+  DAYS.forEach(d=>panels.appendChild(dayPanel(d)));
+  panels.appendChild(nutritionPanel());
+  panels.appendChild(progressPanel());
+  panels.appendChild(guidePanel());
+  selectTab(curTab);
+}
+renderWeeks();
+renderPanels();
+</script>
+</body>
+</html>
